@@ -1,128 +1,335 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Holiday Countdown</title>
+
+<title>Holiday Countdown ✨</title>
 
 <style>
-* {
-  box-sizing: border-box;
+
+*{box-sizing:border-box}
+
+body{
+
+  margin:0;
+
+  min-height:100vh;
+
+  color:white;
+
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+
+  transition:background 1s ease;
+
+  background:#312e81;
+
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: white;
-  transition: background 1s ease;
-  background: #4c1d95;
+main{
+
+  width:min(1100px,94%);
+
+  margin:auto;
+
+  padding:18px 0 55px;
+
+  text-align:center;
+
 }
 
-main {
-  width: min(1000px, 94%);
-  margin: auto;
-  padding: 25px 0 50px;
-  text-align: center;
+.today{
+
+  text-align:right;
+
+  font-size:15px;
+
+  font-weight:700;
+
+  opacity:.82;
+
+  margin:0 4px 10px;
+
 }
 
-.today {
-  text-align: right;
-  font-size: 16px;
-  font-weight: 600;
-  opacity: 0.75;
-  margin-bottom: 10px;
+.card{
+
+  position:relative;
+
+  overflow:hidden;
+
+  padding:34px 22px 28px;
+
+  border-radius:32px;
+
+  background:rgba(255,255,255,.14);
+
+  border:1px solid rgba(255,255,255,.25);
+
+  backdrop-filter:blur(14px);
+
+  box-shadow:0 18px 50px rgba(0,0,0,.25);
+
 }
 
-.card {
-  padding: 35px 22px;
-  border-radius: 30px;
-  background: rgba(255,255,255,0.14);
-  border: 1px solid rgba(255,255,255,0.25);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+.card:before,
+
+.card:after{
+
+  content:"";
+
+  position:absolute;
+
+  border-radius:50%;
+
+  filter:blur(3px);
+
+  opacity:.18;
+
 }
 
-.emoji {
-  font-size: 70px;
+.card:before{
+
+  width:180px;
+
+  height:180px;
+
+  background:white;
+
+  top:-100px;
+
+  left:-70px;
+
 }
 
-.label {
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: 3px;
-  opacity: 0.9;
+.card:after{
+
+  width:220px;
+
+  height:220px;
+
+  background:white;
+
+  bottom:-150px;
+
+  right:-80px;
+
 }
 
-.name {
-  font-size: clamp(42px, 8vw, 75px);
-  font-weight: 900;
-  margin: 8px 0;
+.emoji{
+
+  font-size:70px;
+
+  position:relative;
+
 }
 
-.timer {
-  font-size: clamp(30px, 7vw, 60px);
-  font-weight: 900;
-  margin: 15px 0;
+.label{
+
+  font-size:18px;
+
+  font-weight:900;
+
+  letter-spacing:4px;
+
+  opacity:.9;
+
+  position:relative;
+
 }
 
-.date {
-  font-size: 20px;
-  opacity: 0.9;
+.name{
+
+  font-size:clamp(42px,8vw,78px);
+
+  font-weight:950;
+
+  margin:8px 0;
+
+  position:relative;
+
 }
 
-h2 {
-  margin-top: 45px;
-  font-size: 30px;
+.timer{
+
+  font-size:clamp(28px,6.5vw,58px);
+
+  font-weight:950;
+
+  margin:14px 0;
+
+  position:relative;
+
 }
 
-.holidays {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 14px;
-  margin-top: 20px;
+.date{
+
+  font-size:20px;
+
+  opacity:.92;
+
+  position:relative;
+
 }
 
-.holiday {
-  padding: 18px;
-  border-radius: 22px;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.2);
+.message{
+
+  margin-top:16px;
+
+  font-size:15px;
+
+  font-weight:700;
+
+  opacity:.85;
+
+  position:relative;
+
 }
 
-.holiday span {
-  display: block;
-  font-size: 35px;
+h2{
+
+  margin:38px 0 16px;
+
+  font-size:30px;
+
 }
 
-.holiday strong {
-  display: block;
-  margin-top: 7px;
-  font-size: 17px;
+.holidays{
+
+  display:grid;
+
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+
+  gap:14px;
+
 }
 
-.holiday small {
-  display: block;
-  opacity: 0.8;
-  margin-top: 5px;
+.holiday{
+
+  padding:19px 14px;
+
+  border-radius:23px;
+
+  background:rgba(255,255,255,.14);
+
+  border:1px solid rgba(255,255,255,.22);
+
+  box-shadow:0 8px 25px rgba(0,0,0,.14);
+
+  transition:transform .2s ease;
+
 }
 
-.holiday .countdown {
-  margin-top: 10px;
-  font-weight: 700;
-  font-size: 14px;
+.holiday:hover{
+
+  transform:translateY(-4px);
+
 }
 
-.special {
-  box-shadow: 0 0 25px rgba(255,255,255,0.15);
+.holiday span{
+
+  display:block;
+
+  font-size:38px;
+
 }
 
-.next {
-  margin-top: 25px;
-  opacity: 0.8;
-  font-size: 15px;
+.holiday strong{
+
+  display:block;
+
+  margin-top:7px;
+
+  font-size:17px;
+
 }
+
+.holiday small{
+
+  display:block;
+
+  margin-top:5px;
+
+  opacity:.8;
+
+}
+
+.countdown{
+
+  margin-top:10px;
+
+  font-size:14px;
+
+  font-weight:800;
+
+  line-height:1.35;
+
+}
+
+.special{
+
+  outline:2px solid rgba(255,255,255,.3);
+
+  box-shadow:0 0 28px rgba(255,255,255,.14);
+
+}
+
+.note{
+
+  margin-top:25px;
+
+  font-size:13px;
+
+  opacity:.72;
+
+}
+
+@media(max-width:600px){
+
+  main{
+
+    padding-top:12px;
+
+  }
+
+  .today{
+
+    font-size:13px;
+
+  }
+
+  .card{
+
+    padding:28px 15px;
+
+  }
+
+  .emoji{
+
+    font-size:58px;
+
+  }
+
+  h2{
+
+    font-size:26px;
+
+  }
+
+  .holidays{
+
+    grid-template-columns:repeat(2,1fr);
+
+  }
+
+}
+
 </style>
+
 </head>
 
 <body>
@@ -132,20 +339,38 @@ h2 {
 <div class="today" id="today"></div>
 
 <section class="card">
-  <div class="emoji" id="emoji"></div>
-  <div class="label" id="label">NEXT HOLIDAY</div>
-  <div class="name" id="name"></div>
-  <div class="timer" id="timer"></div>
-  <div class="date" id="date"></div>
 
-  <div class="next">
-    ✨ Countdown updates every second ✨
-  </div>
+<div class="emoji" id="emoji"></div>
+
+<div class="label" id="label">
+
+NEXT HOLIDAY
+
+</div>
+
+<div class="name" id="name"></div>
+
+<div class="timer" id="timer"></div>
+
+<div class="date" id="date"></div>
+
+<div class="message" id="message">
+
+✨ Countdown updates every second ✨
+
+</div>
+
 </section>
 
 <h2>🎉 Upcoming Holidays</h2>
 
 <div class="holidays" id="holidayList"></div>
+
+<div class="note">
+
+Past holidays automatically disappear ✨
+
+</div>
 
 </main>
 
@@ -153,303 +378,438 @@ h2 {
 
 const holidays = [
 
-  {
-    date: "2026-09-07T00:00:00",
-    end: "2026-09-08T00:00:00",
-    name: "Labor Day",
-    emoji: "👷",
-    bg: "#312e81"
-  },
+{
 
-  {
-    date: "2026-09-22T00:00:00",
-    end: "2026-09-23T00:00:00",
-    name: "First Day of Fall",
-    emoji: "🍂",
-    bg: "#7c2d12"
-  },
+date:"2026-09-07T00:00:00",
 
-  {
-    date: "2026-10-12T00:00:00",
-    end: "2026-10-13T00:00:00",
-    name: "Columbus Day",
-    emoji: "⛵",
-    bg: "#164e63"
-  },
+name:"Labor Day",
 
-  {
-    date: "2026-10-31T00:00:00",
-    end: "2026-11-01T00:00:00",
-    name: "Halloween",
-    emoji: "🎃",
-    bg: "#3b0764"
-  },
+emoji:"👷",
 
-  {
-    date: "2026-11-11T00:00:00",
-    end: "2026-11-12T00:00:00",
-    name: "Veterans Day",
-    emoji: "🇺🇸",
-    bg: "#450a0a"
-  },
+bg:"#312e81"
 
-  {
-    date: "2026-11-26T00:00:00",
-    end: "2026-11-27T00:00:00",
-    name: "Thanksgiving",
-    emoji: "🦃",
-    bg: "#431407"
-  },
+},
 
-  {
-    date: "2026-12-21T00:00:00",
-    end: "2026-12-22T00:00:00",
-    name: "First Day of Winter",
-    emoji: "❄️",
-    bg: "#172554"
-  },
+{
 
-  {
-    date: "2026-12-24T00:00:00",
-    end: "2026-12-25T00:00:00",
-    name: "Christmas Eve",
-    emoji: "🎅",
-    bg: "#064e3b"
-  },
+date:"2026-09-22T00:00:00",
 
-  {
-    date: "2026-12-25T00:00:00",
-    end: "2026-12-26T00:00:00",
-    name: "Christmas",
-    emoji: "🎄",
-    bg: "#052e16"
-  },
+name:"First Day of Fall",
 
-  {
-    date: "2026-12-31T00:00:00",
-    end: "2027-01-01T00:00:00",
-    name: "New Year's Eve",
-    emoji: "🎉",
-    bg: "#1e1b4b"
-  }
+emoji:"🍂",
+
+bg:"#7c2d12",
+
+season:true
+
+},
+
+{
+
+date:"2026-10-12T00:00:00",
+
+name:"Columbus Day",
+
+emoji:"⛵",
+
+bg:"#164e63"
+
+},
+
+{
+
+date:"2026-10-31T00:00:00",
+
+name:"Halloween",
+
+emoji:"🎃",
+
+bg:"#3b0764"
+
+},
+
+{
+
+date:"2026-11-11T00:00:00",
+
+name:"Veterans Day",
+
+emoji:"🇺🇸",
+
+bg:"#450a0a"
+
+},
+
+{
+
+date:"2026-11-26T00:00:00",
+
+name:"Thanksgiving",
+
+emoji:"🦃",
+
+bg:"#431407"
+
+},
+
+{
+
+date:"2026-12-21T00:00:00",
+
+name:"First Day of Winter",
+
+emoji:"❄️",
+
+bg:"#172554",
+
+season:true
+
+},
+
+{
+
+date:"2026-12-24T00:00:00",
+
+name:"Christmas Eve",
+
+emoji:"🎅",
+
+bg:"#064e3b"
+
+},
+
+{
+
+date:"2026-12-25T00:00:00",
+
+name:"Christmas",
+
+emoji:"🎄",
+
+bg:"#052e16"
+
+},
+
+{
+
+date:"2026-12-31T00:00:00",
+
+name:"New Year's Eve",
+
+emoji:"🎉",
+
+bg:"#1e1b4b"
+
+},
+
+{
+
+date:"2027-01-01T00:00:00",
+
+name:"New Year's Day",
+
+emoji:"🎆",
+
+bg:"#172554"
+
+}
 
 ];
 
-const newYearsDay = {
-  date: "2027-01-01T00:00:00",
-  end: "2027-01-02T00:00:00",
-  name: "New Year's Day",
-  emoji: "🎆",
-  bg: "#172554"
-};
+function formatTime(ms){
 
-function getCurrentHoliday() {
+ms=Math.max(0,ms);
 
-  const now = new Date();
+let seconds=Math.floor(ms/1000);
 
-  return holidays.find(h =>
-    now >= new Date(h.date) &&
-    now < new Date(h.end)
-  );
-}
+const days=Math.floor(seconds/86400);
 
-function getNextHoliday() {
+seconds%=86400;
 
-  const now = new Date();
+const hours=Math.floor(seconds/3600);
 
-  return holidays.find(h =>
-    new Date(h.date) > now
-  );
-}
+seconds%=3600;
 
-function formatTime(ms) {
+const minutes=Math.floor(seconds/60);
 
-  if (ms < 0) ms = 0;
+const secs=seconds%60;
 
-  let total = Math.floor(ms / 1000);
-
-  const days = Math.floor(total / 86400);
-  total %= 86400;
-
-  const hours = Math.floor(total / 3600);
-  total %= 3600;
-
-  const minutes = Math.floor(total / 60);
-  const seconds = total % 60;
-
-  return `${days}d ${String(hours).padStart(2,"0")}h ${String(minutes).padStart(2,"0")}m ${String(seconds).padStart(2,"0")}s`;
-}
-
-function formatDate(date) {
-
-  return new Date(date).toLocaleDateString(undefined, {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-    year: "numeric"
-  });
-}
-
-function updateToday() {
-
-  const now = new Date();
-
-  document.getElementById("today").textContent =
-    now.toLocaleDateString(undefined, {
-      weekday: "long",
-      month: "long",
-      day: "numeric",
-      year: "numeric"
-    });
-}
-
-function updateBigCard() {
-
-  const now = new Date();
-
-  let current = getCurrentHoliday();
-  let next = getNextHoliday();
-
-  /*
-    If today is a holiday,
-    show that holiday on the big screen.
-  */
-
-  if (current) {
-
-    document.body.style.background = current.bg;
-
-    document.getElementById("emoji").textContent = current.emoji;
-
-    document.getElementById("label").textContent =
-      "TODAY";
-
-    document.getElementById("name").textContent =
-      current.name;
-
-    document.getElementById("timer").textContent =
-      "🎉 TODAY! 🎉";
-
-    document.getElementById("date").textContent =
-      formatDate(current.date);
-
-    return;
-  }
-
-  /*
-    Otherwise show the next upcoming holiday.
-  */
-
-  if (!next) {
-    next = newYearsDay;
-  }
-
-  document.body.style.background = next.bg;
-
-  document.getElementById("emoji").textContent =
-    next.emoji;
-
-  document.getElementById("label").textContent =
-    "NEXT HOLIDAY";
-
-  document.getElementById("name").textContent =
-    next.name;
-
-  document.getElementById("timer").textContent =
-    formatTime(new Date(next.date) - now);
-
-  document.getElementById("date").textContent =
-    formatDate(next.date);
-}
-
-function updateHolidayList() {
-
-  const now = new Date();
-
-  const list = document.getElementById("holidayList");
-
-  list.innerHTML = "";
-
-  /*
-    Only show holidays that have NOT passed.
-  */
-
-  const upcoming = holidays.filter(h =>
-    new Date(h.date) > now
-  );
-
-  upcoming.forEach(h => {
-
-    const div = document.createElement("div");
-
-    div.className = "holiday";
-
-    div.innerHTML = `
-      <span>${h.emoji}</span>
-
-      <strong>${h.name}</strong>
-
-      <small>
-        ${new Date(h.date).toLocaleDateString(undefined,{
-          month:"long",
-          day:"numeric",
-          year:"numeric"
-        })}
-      </small>
-
-      <div class="countdown" data-date="${h.date}">
-        ${formatTime(new Date(h.date) - now)}
-      </div>
-    `;
-
-    list.appendChild(div);
-
-  });
-}
-
-function updateSmallCountdowns() {
-
-  const now = new Date();
-
-  document.querySelectorAll(".countdown").forEach(el => {
-
-    const target = new Date(el.dataset.date);
-
-    if (target <= now) {
-      el.parentElement.remove();
-      return;
-    }
-
-    el.textContent =
-      formatTime(target - now);
-
-  });
-}
-
-function update() {
-
-  updateToday();
-  updateBigCard();
-
-  /*
-    Rebuild the list so passed holidays disappear.
-  */
-
-  updateHolidayList();
+return `${days}d ${String(hours).padStart(2,"0")}h ${String(minutes).padStart(2,"0")}m ${String(secs).padStart(2,"0")}s`;
 
 }
 
-update();
+function formatDate(date){
 
-setInterval(() => {
+return new Date(date).toLocaleDateString(undefined,{
 
-  updateToday();
-  updateBigCard();
-  updateSmallCountdowns();
+weekday:"long",
 
-}, 1000);
+month:"long",
+
+day:"numeric",
+
+year:"numeric"
+
+});
+
+}
+
+function sameDay(a,b){
+
+return a.getFullYear()===b.getFullYear() &&
+
+a.getMonth()===b.getMonth() &&
+
+a.getDate()===b.getDate();
+
+}
+
+function daysUntil(target,now){
+
+return Math.ceil((target-now)/86400000);
+
+}
+
+function getBigEvent(now){
+
+for(const holiday of holidays){
+
+const date=new Date(holiday.date);
+
+if(sameDay(now,date)){
+
+return holiday;
+
+}
+
+if(
+
+holiday.season &&
+
+daysUntil(date,now)===1
+
+){
+
+return holiday;
+
+}
+
+}
+
+return null;
+
+}
+
+function getNext(now){
+
+return holidays.find(
+
+holiday => new Date(holiday.date)>now
+
+);
+
+}
+
+function updateToday(now){
+
+document.getElementById("today").textContent =
+
+"Today • " +
+
+now.toLocaleDateString(undefined,{
+
+weekday:"long",
+
+month:"long",
+
+day:"numeric",
+
+year:"numeric"
+
+});
+
+}
+
+function updateBig(now){
+
+const special=getBigEvent(now);
+
+const next=getNext(now);
+
+const shown=special || next;
+
+if(!shown)return;
+
+document.body.style.background=shown.bg;
+
+document.getElementById("emoji").textContent=
+
+shown.emoji;
+
+document.getElementById("name").textContent=
+
+shown.name;
+
+if(special){
+
+document.getElementById("label").textContent=
+
+sameDay(now,new Date(special.date))
+
+?"TODAY"
+
+:"COMING TOMORROW";
+
+document.getElementById("timer").textContent=
+
+sameDay(now,new Date(special.date))
+
+?"🎉 TODAY! 🎉"
+
+:"1 day";
+
+document.getElementById("message").textContent=
+
+sameDay(now,new Date(special.date))
+
+?"✨ Happy "+special.name+"! ✨"
+
+:"🍂 Get ready — tomorrow is "+special.name+"!";
+
+}else{
+
+document.getElementById("label").textContent=
+
+"NEXT HOLIDAY";
+
+document.getElementById("timer").textContent=
+
+formatTime(new Date(shown.date)-now);
+
+document.getElementById("message").textContent=
+
+"✨ Countdown updates every second ✨";
+
+}
+
+document.getElementById("date").textContent=
+
+formatDate(shown.date);
+
+}
+
+function updateList(now){
+
+const list=document.getElementById("holidayList");
+
+list.innerHTML="";
+
+const upcoming=holidays.filter(
+
+holiday=>new Date(holiday.date)>now
+
+);
+
+upcoming.forEach((holiday,index)=>{
+
+const div=document.createElement("div");
+
+div.className=
+
+"holiday"+(index===0?" special":"");
+
+div.innerHTML=`
+
+<span>${holiday.emoji}</span>
+
+<strong>${holiday.name}</strong>
+
+<small>
+
+${new Date(holiday.date).toLocaleDateString(undefined,{
+
+month:"long",
+
+day:"numeric",
+
+year:"numeric"
+
+})}
+
+</small>
+
+<div class="countdown"
+
+data-date="${holiday.date}">
+
+${formatTime(new Date(holiday.date)-now)}
+
+</div>
+
+`;
+
+list.appendChild(div);
+
+});
+
+}
+
+function updateSmallCountdowns(now){
+
+document.querySelectorAll(".countdown")
+
+.forEach(element=>{
+
+const target=new Date(
+
+element.dataset.date
+
+);
+
+if(target<=now){
+
+element.closest(".holiday")?.remove();
+
+}else{
+
+element.textContent=
+
+formatTime(target-now);
+
+}
+
+});
+
+}
+
+function updateAll(){
+
+const now=new Date();
+
+updateToday(now);
+
+updateBig(now);
+
+updateList(now);
+
+}
+
+updateAll();
+
+setInterval(()=>{
+
+const now=new Date();
+
+updateToday(now);
+
+updateBig(now);
+
+updateSmallCountdowns(now);
+
+},1000);
 
 </script>
 
 </body>
+
 </html>
