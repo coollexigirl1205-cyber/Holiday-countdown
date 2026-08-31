@@ -542,39 +542,17 @@ function countdownText(targetDate, now){
 
   }
 
-  /* TOMORROW */
+const diff = target - now;
 
-  if(days === 1){
+const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+const minutes = Math.floor(diff / (1000 * 60)) % 60;
+const seconds = Math.floor(diff / 1000) % 60;
 
-    return "TOMORROW";
+return `${days} DAYS • ${hours} HOURS • ${minutes} MINUTES • ${seconds} SECONDS`;
 
-  }
+  
 
-  /* EXACT WEEK MILESTONES */
 
-  if(days === 21){
-
-    return "3 WEEKS";
-
-  }
-
-  if(days === 14){
-
-    return "2 WEEKS";
-
-  }
-
-  if(days === 7){
-
-    return "1 WEEK";
-
-  }
-
-  /* EVERYTHING ELSE */
-
-  return `${days} DAYS`;
-
-}
 
 /* ==================================================
 
